@@ -1,0 +1,48 @@
+{% extends 'base.twig' %}
+
+{% block assets %}
+    <script type="text/javascript" src="{{ site_url }}assets/js/highcharts.src.js"></script>
+    <script type="text/javascript" src="{{ site_url }}assets/js/stats.js"></script>
+    <link rel='stylesheet' type="text/css" href="{{ site_url }}assets/css/stats.css">
+{% endblock %}
+
+{% block content %}
+    {% if stats is not null %}
+
+        <h1>Statistics for {{ site_url|replace({'http://': ""}) }}{{ url }}</h1>
+
+        <div id="topChart">
+            <div id="clicChart" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <hr/>
+
+        <div id="bottomLeftChart">
+            <div id="referrerChart" style="width: 100%; height: 450px;"></div>
+        </div>
+
+        <div id="bottomRightChart">
+            <div id="countryChart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class='clear'></div>
+
+
+        {% block js_content %}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    {# CLick Charts #}
+                    chartTop.series[0].setData({{ stats.clicks }});
+
+                    {# Countries Charts #}
+                    chartRight.series[0].setData({{ stats.countries|raw }});
+
+                    {# Referrer Charts #}
+
+                    chartLeft.series[0].setData({{ stats.referers|raw }});
+                });
+            </script>
+        {% endblock %}
+    {% else %}
+        This url don't have any statistics yet.
+    {% endif %}
+{% endblock %}

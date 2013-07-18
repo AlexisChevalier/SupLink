@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HeavenShortener</title>
+    <meta charset="utf-8"/>
+    <link rel='stylesheet' type="text/css" href="{{ site_url }}assets/css/index.css">
+    <script type='text/javascript'>
+    var site_url = "{{ site_url }}";
+    </script>
+
+</head>
+<body>
+<header>
+    <div id="leftTopMenu">
+        {% include 'accountBlock.twig' %}
+        <div class="clear"></div>
+    </div>
+
+
+    <div id="title">
+        <a href="{{ site_url }}">HeavenShortener</a> <span id="slogan">Share your links easily !</span>
+    </div>
+
+    {% block shortener %}
+        <div id="shortener">
+            <form id="shortenerForm" method="post" action="{{ site_url }}shorten/generate">
+                <input id="url_long" name="url_long" type="text" placeholder="Paste your link here !">
+                <button id="url_submit" type="submit">Shorten !</button>
+            </form>
+        </div>
+        {% if messages is defined %}
+            <div id="messages">
+                {% for message in messages %}
+                    <div class='message'>{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock %}
+</header>
+
+<div id="middle_content">
+    <div id="wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<footer>
+    {% block footer %}
+        <div id="footerContent">
+            &copy;{{ "now"|date("Y") }} HeavenShortener
+        </div>
+    {% endblock %}
+</footer>
+
+<script type="text/javascript" src="{{ site_url }}assets/js/jquery.js"></script>
+<script type="text/javascript" src="{{ site_url }}assets/js/url_shortener.js"></script>
+{% block assets %}
+{% endblock %}
+
+{% block js_content %}
+
+{% endblock %}
+</body>
+</html>

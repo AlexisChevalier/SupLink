@@ -1,0 +1,69 @@
+{% extends 'base.twig' %}
+
+{% block assets %}
+    <script type="text/javascript" src="{{ site_url }}assets/js/jeditable.js"></script>
+    <script type="text/javascript" src="{{ site_url }}assets/js/stupidtable.min.js"></script>
+    <script type="text/javascript" src="{{ site_url }}assets/js/home.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% if urls is defined %}
+        {% if urls is not null %}
+            <h1>Your shortened urls</h1>
+            <div id="urlList">
+                <table id="listUrls">
+                    <thead>
+                    <tr>
+                        <th data-sort="string">Name</th>
+                        <th data-sort="string">Real URL</th>
+                        <th data-sort="string">Short URL</th>
+                        <th data-sort="string">Creation date</th>
+                        <th>Statistics</th>
+                        <th>Clicks</th>
+                        <th data-sort="int">Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for url in urls %}
+                        {% if url.enabled == 1 %}
+                            <tr class='url enabled' id='{{ url.id }}'>
+                        {% else %}
+                            <tr class='url disabled' id='{{ url.id }}'>
+                        {% endif %}
+                        <td class='urlName'><img class='optionIcon editIcon'
+                                                 src="{{ site_url }}assets/img/edit.png"><span class='nameSpan'
+                                                                                               id="edit_{{ url.id }}"
+                                                                                               title="{{ url.name }}">{{ url.name }}</span>
+                        </td>
+                        <td class='urlLong' title="{{ url.urllong }}"><a href="{{ url.urllong }}"
+                                                                         target="_blank">{{ url.urllong|replace({'http://': "", 'https://': "",  'www.': ""}) }}</a>
+                        </td>
+                        <td class='urlShort'><a href="{{ url.short }}"
+                                                target="_blank">{{ site_url|replace({'http://': ""}) }}{{ url.short }}</a>
+                        </td>
+                        <td class='urlDate'>{{ url.datecreated|date() }}</td>
+                        <td class='urlStats'><a href="{{ site_url }}{{ url.short }}/stats">View Stats</a></td>
+                        <td class='urlClicks'>{{ url.clickedcount }}</td>
+                        <td class="optionsTd">
+                            <img title='Delete' class='delete optionIcon' src="{{ site_url }}assets/img/delete.png">
+                            {% if url.enabled == 1 %}
+                                <img title='Disable' class='disable optionIcon'
+                                     src="{{ site_url }}assets/img/disable.png">
+                            {% else %}
+                                <img title='Enable' class='enable optionIcon' src="{{ site_url }}assets/img/enable.png">
+                            {% endif %}
+                        </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            Welcome on HeavenShortener ! You can now start to shorten and use some urls !
+        {% endif %}
+    {% else %}
+        HeavenShortener is a simple URL Shortener.
+    {% endif %}
+
+{% endblock %}

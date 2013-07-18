@@ -1,0 +1,20 @@
+{% if session.logged == true %}
+    Logged as
+    <a href="{{ site_url }}user/options">
+        {{ session.user_email }} (Settings)
+    </a>
+    |
+    <a href="{{ site_url }}user/logout">
+        Logout
+    </a>
+{% else %}
+    <a href="{{ site_url }}user/signup">
+        <img src="{{ site_url }}assets/img/signup.png">
+        Sign Up
+    </a>
+    <a href="{{ site_url }}user/login">
+        <img src="{{ site_url }}assets/img/login.png">
+        Log In
+    </a>
+{% endif %}
+

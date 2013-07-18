@@ -1,0 +1,32 @@
+#loginform {
+    margin: auto;
+    width: 400px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+#loginform input {
+    margin-bottom: 10px;;
+    width: 290px;
+    height: 29px;
+    font-family: Helvetica, Arial, Georgia, Serif;
+    padding-left: 10px;
+    color: #2a73ff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#loginform #submit_signup {
+    width: 300px;
+    height: 35px !important;
+    font-size: 15px;
+    font-family: Helvetica, Arial, Georgia, Serif;
+    font-weight: bold;
+    background-color: #2952c0;
+    color: white;
+    border: none;
+}
+
+#loginform #submit_signup:hover {
+    background-color: #4778f8;
+}

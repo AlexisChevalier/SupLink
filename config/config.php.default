@@ -1,0 +1,82 @@
+<?php
+/**
+ * Author: CHEVALIER Alexis <alexis.chevalier@supinfo.com>
+ * Date: 04/02/13
+ * File: config.php
+ */
+
+Class config{
+
+    /*
+     * YOU HAVE TO MODIFY THIS ARRAY : IT'S YOUR APPLICATION CONFIGURATION
+     */
+    private static $_config =
+        Array(
+            'mode' => 'DEVEL', //Application mode - DEVEL / PROD
+
+            'server_root' => 'C:\wamp\www\2DWB', //Server Application Root
+            'site_root' => 'http://localhost/2DWB/public/', //index.php folder URL
+            'before_real_url' => '/2DWB/public/', //Part of URL which is not useful for the framework
+            'default_controller' => 'news', //Controller loaded when no controller precised
+
+            //Database configuration for Development
+            'db_dev' =>
+                Array(
+                    'driver' =>     'pdo_mysql',
+                    'user' =>       'root',
+                    'password' =>   'root',
+                    'host' =>       'localhost',
+                    'dbname' =>     '2DWB'
+                ),
+
+                //Database configuration for Production
+            'db_prod' =>
+                Array(
+                    'driver' =>     'pdo_mysql',
+                    'user' =>       'root',
+                    'password' =>   'root',
+                    'host' =>       'localhost',
+                    'dbname' =>     '2DWB'
+                ),
+        );
+    /*
+     * DON'T MODIFY THIS FILE UNTIL THIS POINT !
+     */
+
+    /*
+     * Returns configuration by level provided (ex : if level2 key provided you will get $_config[$level1][$level2])
+     * If you don't provide any key, you will get the entire $_config array.
+     * If the config value is invalid, you will get a null value
+     */
+    public static function Get($level1=null, $level2=null, $level3=null, $level4=null)
+    {
+        if($level4 != null){
+            if(isset(self::$_config[$level1][$level2][$level3][$level4])){
+                return self::$_config[$level1][$level2][$level3][$level4];
+            }else{
+                return null;
+            }
+        }elseif($level3 != null){
+            if(isset(self::$_config[$level1][$level2][$level3])){
+                return self::$_config[$level1][$level2][$level3];
+            }else{
+                return null;
+            }
+        }elseif($level2 != null){
+            if(isset(self::$_config[$level1][$level2])){
+                return self::$_config[$level1][$level2];
+            }else{
+                return null;
+            }
+        }elseif($level1 != null){
+            if(isset(self::$_config[$level1])){
+                return self::$_config[$level1];
+            }else{
+                return null;
+            }
+        }else{
+            return self::$_config;
+        }
+    }
+}
+

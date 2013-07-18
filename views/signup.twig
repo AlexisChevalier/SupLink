@@ -1,0 +1,25 @@
+{% extends 'base.twig' %}
+
+
+{% block assets %}
+    <link rel='stylesheet' type="text/css" href="{{ site_url }}assets/css/signup.css">
+{% endblock %}
+
+{% block content %}
+    <h1> Create an account to fully enjoy our service !</h1>
+    {% if errors is defined %}
+        {% for error in errors %}
+            <div class='error'>{{ error }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form id="loginform" method="POST">
+        <input type="text" name="username" value="{{ username }}" id="username" placeholder="Email">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" name="password_check" id="password_check" placeholder="Password again" ">
+        <button id="submit_signup" name="submit_signup" type="submit">Sign Up !</button>
+        <p>All the fields are mandatory</p>
+    </form>
+
+
+{% endblock %}

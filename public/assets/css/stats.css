@@ -1,0 +1,11 @@
+#bottomLeftChart {
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+#bottomRightChart {
+    width: 49%;
+    float: right;
+    position: relative;
+}
