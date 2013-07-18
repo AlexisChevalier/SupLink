@@ -1,7 +1,8 @@
 SupLink
 =======
 
-**Ce projet utilise un micro-framework MVC réalisé par mes soins, il est encore en cours de développement et sera publié sur ce githbu une fois terminé.
+Ce projet utilise un micro-framework MVC réalisé par mes soins, il est encore en cours de développement et sera publié sur ce githbu une fois terminé.
+===
 
 Pour la configuration du projet en local:
 
