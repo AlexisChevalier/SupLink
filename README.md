@@ -2,7 +2,7 @@ SupLink
 =======
 <pre>
 Ce projet utilise un micro-framework MVC réalisé par mes soins, 
-il est encore en cours de développement et sera publié sur ce github une fois terminé.
+il est encore en cours de développement.
 </pre>
 
 Pour la configuration du projet en local:
